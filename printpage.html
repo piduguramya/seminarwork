@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Print Section</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .print-section { 
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        width: 60%;
+        text-align: center;
+        margin: 20px 0; 
+    }
+
+    .print-section h2 {
+        font-size: 24px;
+        color: black;
+    }
+
+    .print-section p {
+        font-size: 18px;
+        color: black;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div id="section-to-print" class="print-section">
+    <h2><pre>Name : PIDUGU RAMYA</pre></h2>
+    <h2><pre>Email : piduguramya14e@gmail.com</pre></h2>
+    <h2><pre>Ph.(M) : +91 6281310120</pre></h2>
+     <h1>Career Objective:</h1>
+      <p>To secure a position where I can utilize my skills to overcome the challenges and drive towards success. While further developing my professional      abilities.</p>
+       <h1>Academic Review:</h1>
+        <p>Pursued Bachelor's degree in Princeton institute of engineering and technology for women(JNTUH) in CSE with 74.8% (2020-2024).</p>
+        <p>Pursued Intermediate in Alphores junior college(TS Board) with 95% (2018-2020).</p>
+        <p>Pursued Schooling in Universal English medium high school(ssc) with 95% (2018).</p>
+         <h1>Skillset:</h1>
+          <p><pre>Programming languages: basics of Python</pre></p>
+          <p><pre>Productivity tools   : MS Word, MS PowerPoint</pre></p>
+           <h1>Key Areas of Expertise:</h1>
+            <p>Communication Skills</p>
+            <p>Quick Learner</p>
+            <p>Hard working and good Leadership Qualities</p>
+            <p>Keen to learn new things & to apply them in day-to-day activities</p>
+             <h1>Work Experience:</h1>
+              <p>Fresher</p>
+               <h1>Noteworthy Achievements:</h1>
+                <p>Awarded Gold Medal in mathematics Olympiad during my schooling period.</p>
+                <p>Won in college technical fest treasure hunt competition as team member.</p>
+                 <h1>Hobbies:</h1>
+                  <p>Listening music</p>
+                  <p>Volunteering</p>
+                   <h1>Personal Profile:</h1>
+                   <p><pre>
+                   Nationality        : Indian<br>
+                   Date of Birth      :28-07-2002<br>
+                   Father name        : P. Gopal<br>
+                   Linguistic ability : English, Telugu & Hindi<br>
+                   Address            : Hyderabad</pre>
+                   </p>
+                    <h1>Declaration:</h1>
+                     <p>I hereby declare that the above-mentioned information is correct up to my knowledge and I bear the responsibility for the       correctness of the above-mentioned particulars.</p>
+</div>
+
+<button onclick="printSection()">Print Section</button>
+
+<script>
+    function printSection() {
+        const printContent = document.getElementById('section-to-print').innerHTML;
+        // const originalContent = document.body.innerHTML;  
+
+        // Set up a temporary print layout
+        document.body.innerHTML = printContent;
+        window.print();                                   
+
+       
+    }
+</script>
+
+</body>
+</html>

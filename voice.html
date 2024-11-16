@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Input Example</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    /* Basic Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7fa;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 30px;
+        font-weight: 600;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    /* Button Styles */
+    button {
+        padding: 12px 30px;
+        font-size: 18px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+        transform: translateY(-4px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    button:active {
+        transform: translateY(2px);
+        background-color: #004085;
+    }
+
+    /* Transcript Styles */
+    #transcript {
+        width: 80%;
+        max-width: 600px;
+        min-height: 100px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #ffffff;
+        color: #333;
+        font-size: 18px;
+        line-height: 1.5;
+        box-sizing: border-box;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        margin-top: 20px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        text-align: left;
+    }
+
+    /* Fade-in effect for the transcript */
+    #transcript {
+        opacity: 0;
+        animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 24px;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+
+        #transcript {
+            width: 90%;
+            font-size: 16px;
+        }
+    }
+    .c{
+        display: flex;
+        flex-direction: row;                
+    }
+</style>
+
+<body>
+    <h1>Voice Input with Speech Recognition</h1>
+    <div class="c">
+    <button id="startButton">Start Listening</button>
+    <button id="clear">clear response</button>
+</div>
+    <div id="transcript"></div>
+
+
+    <script>
+
+        let transcript=document.getElementById("transcript")
+        document.getElementById('startButton').addEventListener('click', () => {
+    if ('webkitSpeechRecognition' in window) {
+        const recognition = new webkitSpeechRecognition();
+        recognition.continuous = false;          
+        recognition.interimResults = true; 
+        recognition.lang = 'en-US';
+
+        recognition.onstart = () => {          
+            console.log('Voice recognition started. Try speaking into the microphone.');
+        };
+
+        recognition.onresult = (event) => {
+            let transcript = '';                          
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    transcript += event.results[i][0].transcript;
+                } 
+                else {
+                    transcript += event.results[i][0].transcript;
+                }
+            }
+            document.getElementById('transcript').innerText = transcript;
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Error occurred in recognition: ' + event.error);
+        };
+
+        recognition.onend = () => {
+            console.log('Voice recognition ended.');                     
+        };
+
+        recognition.start();
+    } else {
+        console.log("Speech recognition not supported in this browser.");
+    }
+});
+
+       
+
+     document.getElementById("clear").addEventListener("click",()=>{
+        transcript.innerText=""
+     })
+    </script>
+</body>
+</html>
